@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --emerald-deep: #0F2E2B;
+  --emerald-dark: #143731;
+  --emerald-medium: #1A4942;
+  --champagne-gold: #E6C992;
+  --champagne-light: #F2DDB8;
+  --ivory-white: #F8F6F0;
+  --black: #000000;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 40 29% 95%;
+    --card: 174 51% 8%;
+    --card-foreground: 40 29% 95%;
+    --popover: 174 51% 8%;
+    --popover-foreground: 40 29% 95%;
+    --primary: 40 53% 75%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 174 47% 13%;
+    --secondary-foreground: 40 29% 95%;
+    --muted: 174 47% 13%;
+    --muted-foreground: 40 29% 75%;
+    --accent: 40 53% 75%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 40 29% 95%;
+    --border: 174 47% 20%;
+    --input: 174 47% 13%;
+    --ring: 40 53% 75%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-emerald-deep text-ivory font-body;
+    font-family: 'Lato', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-body {
+    font-family: 'Lato', 'Inter', sans-serif;
+    font-size: 1.05rem;
+  }
+  .text-ivory {
+    color: var(--ivory-white);
+  }
+  .text-champagne {
+    color: var(--champagne-gold);
+  }
+  .bg-emerald-deep {
+    background-color: var(--emerald-deep);
+  }
+  .bg-emerald-dark {
+    background-color: var(--emerald-dark);
+  }
+  .bg-emerald-medium {
+    background-color: var(--emerald-medium);
+  }
+  .bg-champagne {
+    background-color: var(--champagne-gold);
+  }
+  .border-champagne {
+    border-color: var(--champagne-gold);
+  }
+  .border-emerald {
+    border-color: var(--emerald-medium);
+  }
+}
