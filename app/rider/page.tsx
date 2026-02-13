@@ -6,8 +6,9 @@ import { useAuth } from '@/lib/auth/context';
 import { supabase } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Shield, MapPin, Clock, CreditCard, User, LogOut, Calendar, Star } from 'lucide-react';
+import { MapPin, Clock, CreditCard, User, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 
 export default function RiderDashboard() {
   const router = useRouter();
@@ -82,11 +83,13 @@ export default function RiderDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-pulse">
-          <Shield className="w-12 h-12 text-black" />
+      <DashboardLayout userType="rider">
+        <div className="min-h-[80vh] flex items-center justify-center">
+          <div className="animate-pulse">
+            <div className="w-12 h-12 border-2 border-gold-400 border-t-transparent rounded-full animate-spin" />
+          </div>
         </div>
-      </div>
+      </DashboardLayout>
     );
   }
 
@@ -95,86 +98,53 @@ export default function RiderDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="border-b border-black/5 bg-white/80 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <Link href="/" className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-black" />
-                <span className="text-lg font-medium">APEX</span>
-              </Link>
-              <div className="hidden md:flex items-center gap-4 text-sm">
-                <Link href="/rider" className="text-black font-medium">Dashboard</Link>
-                <Link href="/rider/book" className="text-black/60 hover:text-black">Book</Link>
-                <Link href="/rider/trips" className="text-black/60 hover:text-black">Trips</Link>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link href="/rider/profile">
-                <Button variant="ghost" size="sm" className="rounded-full">
-                  <User className="w-4 h-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleSignOut}
-                className="rounded-full"
-              >
-                <LogOut className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto px-6 py-12">
+    <DashboardLayout userType="rider">
+      <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="mb-12">
-          <h1 className="text-4xl font-light mb-2">
+          <h1 className="text-4xl font-light mb-2 text-ivory font-heading">
             Welcome back{user.profile?.first_name ? `, ${user.profile.first_name}` : ''}
           </h1>
-          <p className="text-black/60 font-light">Manage your rides and preferences</p>
+          <p className="text-ivory/60 font-light font-body">Manage your rides and preferences</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="p-6 border-black/10">
+          <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400/40 transition-all">
             <div className="flex items-start justify-between mb-4">
-              <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-black" />
+              <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center">
+                <Calendar className="w-5 h-5 text-gold-400" />
               </div>
-              <span className="text-2xl font-light">{stats.totalRides}</span>
+              <span className="text-2xl font-light text-ivory">{stats.totalRides}</span>
             </div>
-            <p className="text-sm font-light text-black/60">Total Rides</p>
+            <p className="text-sm font-light text-ivory/60 font-body">Total Rides</p>
           </Card>
 
-          <Card className="p-6 border-black/10">
+          <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400/40 transition-all">
             <div className="flex items-start justify-between mb-4">
-              <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center">
-                <Clock className="w-5 h-5 text-black" />
+              <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-gold-400" />
               </div>
-              <span className="text-2xl font-light">{stats.upcomingRides}</span>
+              <span className="text-2xl font-light text-ivory">{stats.upcomingRides}</span>
             </div>
-            <p className="text-sm font-light text-black/60">Upcoming</p>
+            <p className="text-sm font-light text-ivory/60 font-body">Upcoming</p>
           </Card>
 
-          <Card className="p-6 border-black/10">
+          <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400/40 transition-all">
             <div className="flex items-start justify-between mb-4">
-              <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center">
-                <CreditCard className="w-5 h-5 text-black" />
+              <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center">
+                <CreditCard className="w-5 h-5 text-gold-400" />
               </div>
-              <span className="text-2xl font-light">${stats.totalSpent.toFixed(0)}</span>
+              <span className="text-2xl font-light text-ivory">${stats.totalSpent.toFixed(0)}</span>
             </div>
-            <p className="text-sm font-light text-black/60">Total Spent</p>
+            <p className="text-sm font-light text-ivory/60 font-body">Total Spent</p>
           </Card>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-light">Recent Trips</h2>
+              <h2 className="text-2xl font-light text-ivory font-heading">Recent Trips</h2>
               <Link href="/rider/trips">
-                <Button variant="ghost" size="sm" className="text-black/60">
+                <Button variant="ghost" size="sm" className="text-ivory/60 hover:text-gold-400 font-body">
                   View all
                 </Button>
               </Link>
@@ -182,46 +152,46 @@ export default function RiderDashboard() {
 
             <div className="space-y-4">
               {recentRides.length === 0 ? (
-                <Card className="p-12 border-black/10 text-center">
-                  <MapPin className="w-12 h-12 text-black/20 mx-auto mb-4" />
-                  <p className="text-black/60 font-light mb-4">No rides yet</p>
+                <Card className="p-12 bg-emerald-800/50 border-gold-400/20 text-center">
+                  <MapPin className="w-12 h-12 text-gold-400/30 mx-auto mb-4" />
+                  <p className="text-ivory/60 font-light mb-4 font-body">No rides yet</p>
                   <Link href="/rider/book">
-                    <Button className="bg-black hover:bg-black/90 text-white rounded-full">
+                    <Button className="bg-gold-400 hover:bg-gold-300 text-emerald-900 font-body">
                       Book your first ride
                     </Button>
                   </Link>
                 </Card>
               ) : (
                 recentRides.map((ride) => (
-                  <Card key={ride.id} className="p-6 border-black/10 hover:border-black/20 transition-colors">
+                  <Card key={ride.id} className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400 transition-all">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <MapPin className="w-4 h-4 text-black/40" />
-                          <span className="text-sm font-medium">{ride.pickup_address}</span>
+                          <MapPin className="w-4 h-4 text-gold-400/60" />
+                          <span className="text-sm font-medium text-ivory font-body">{ride.pickup_address}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-black/60">
+                        <div className="flex items-center gap-2 text-ivory/60">
                           <div className="w-4 h-4 flex items-center justify-center">
-                            <div className="w-1.5 h-1.5 rounded-full bg-black/40" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-gold-400/60" />
                           </div>
-                          <span className="text-sm font-light">{ride.dropoff_address}</span>
+                          <span className="text-sm font-light font-body">{ride.dropoff_address}</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                          ride.status === 'completed' ? 'bg-green-100 text-green-700' :
-                          ride.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
-                          'bg-black/5 text-black/60'
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium font-body ${
+                          ride.status === 'completed' ? 'bg-emerald-700 text-gold-400' :
+                          ride.status === 'pending' ? 'bg-gold-400/20 text-gold-400' :
+                          'bg-emerald-800/50 text-ivory/60'
                         }`}>
                           {ride.status}
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-black/40 font-light">
+                      <span className="text-ivory/40 font-light font-body">
                         {new Date(ride.created_at).toLocaleDateString()}
                       </span>
-                      <span className="font-medium">
+                      <span className="font-medium text-gold-400 font-body">
                         ${((ride.estimated_price_cents || 0) / 100).toFixed(2)}
                       </span>
                     </div>
@@ -232,45 +202,45 @@ export default function RiderDashboard() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-light mb-6">Quick Actions</h2>
+            <h2 className="text-2xl font-light mb-6 text-ivory font-heading">Quick Actions</h2>
             <div className="space-y-4">
               <Link href="/rider/book">
-                <Card className="p-6 border-black/10 hover:border-black/20 transition-colors cursor-pointer group">
+                <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400 transition-all cursor-pointer group">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-black group-hover:bg-black/90 transition-colors flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 rounded-full bg-gold-400 group-hover:bg-gold-300 transition-colors flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-emerald-900" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Book a Ride</h3>
-                      <p className="text-sm text-black/60 font-light">Schedule or ride now</p>
+                      <h3 className="font-medium mb-1 text-ivory font-body">Book a Ride</h3>
+                      <p className="text-sm text-ivory/60 font-light font-body">Schedule or ride now</p>
                     </div>
                   </div>
                 </Card>
               </Link>
 
               <Link href="/rider/profile">
-                <Card className="p-6 border-black/10 hover:border-black/20 transition-colors cursor-pointer group">
+                <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400 transition-all cursor-pointer group">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-black/5 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <User className="w-6 h-6 text-black" />
+                    <div className="w-12 h-12 rounded-full bg-gold-400/10 group-hover:bg-gold-400/20 transition-colors flex items-center justify-center">
+                      <User className="w-6 h-6 text-gold-400" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Profile</h3>
-                      <p className="text-sm text-black/60 font-light">Manage your account</p>
+                      <h3 className="font-medium mb-1 text-ivory font-body">Profile</h3>
+                      <p className="text-sm text-ivory/60 font-light font-body">Manage your account</p>
                     </div>
                   </div>
                 </Card>
               </Link>
 
               <Link href="/rider/payment">
-                <Card className="p-6 border-black/10 hover:border-black/20 transition-colors cursor-pointer group">
+                <Card className="p-6 bg-emerald-800/50 border-gold-400/20 hover:border-gold-400 transition-all cursor-pointer group">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-black/5 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <CreditCard className="w-6 h-6 text-black" />
+                    <div className="w-12 h-12 rounded-full bg-gold-400/10 group-hover:bg-gold-400/20 transition-colors flex items-center justify-center">
+                      <CreditCard className="w-6 h-6 text-gold-400" />
                     </div>
                     <div>
-                      <h3 className="font-medium mb-1">Payment</h3>
-                      <p className="text-sm text-black/60 font-light">Manage payment methods</p>
+                      <h3 className="font-medium mb-1 text-ivory font-body">Payment</h3>
+                      <p className="text-sm text-ivory/60 font-light font-body">Manage payment methods</p>
                     </div>
                   </div>
                 </Card>
@@ -278,7 +248,7 @@ export default function RiderDashboard() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 }

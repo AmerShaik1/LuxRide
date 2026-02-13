@@ -16,26 +16,31 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 40 29% 95%;
-    --card: 174 51% 8%;
-    --card-foreground: 40 29% 95%;
-    --popover: 174 51% 8%;
-    --popover-foreground: 40 29% 95%;
+    --background: 174 51% 8%;
+    --foreground: 40 29% 97%;
+    --card: 174 51% 10%;
+    --card-foreground: 40 29% 97%;
+    --popover: 174 51% 10%;
+    --popover-foreground: 40 29% 97%;
     --primary: 40 53% 75%;
-    --primary-foreground: 0 0% 0%;
+    --primary-foreground: 174 51% 8%;
     --secondary: 174 47% 13%;
-    --secondary-foreground: 40 29% 95%;
-    --muted: 174 47% 13%;
+    --secondary-foreground: 40 29% 97%;
+    --muted: 174 47% 15%;
     --muted-foreground: 40 29% 75%;
     --accent: 40 53% 75%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 40 29% 95%;
-    --border: 174 47% 20%;
+    --accent-foreground: 174 51% 8%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 29% 97%;
+    --border: 174 30% 25%;
     --input: 174 47% 13%;
     --ring: 40 53% 75%;
     --radius: 0.5rem;
+    --chart-1: 174 47% 40%;
+    --chart-2: 40 53% 60%;
+    --chart-3: 174 30% 30%;
+    --chart-4: 40 40% 50%;
+    --chart-5: 174 20% 50%;
   }
 }
 
@@ -44,18 +49,28 @@
     @apply border-border;
   }
   body {
-    @apply bg-emerald-deep text-ivory font-body;
+    @apply bg-emerald-900 text-ivory font-body;
     font-family: 'Lato', 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
+    @apply text-ivory;
   }
-  p {
-    font-size: 1rem;
-    line-height: 1.7;
+
+  input, textarea, select {
+    @apply text-ivory placeholder:text-ivory/40;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    @apply ring-gold-400 border-gold-400;
+  }
+
+  button:focus-visible {
+    @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-emerald-900;
+  }
+
+  a:focus-visible {
+    @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-emerald-900;
   }
 }
 
@@ -65,7 +80,6 @@
   }
   .font-body {
     font-family: 'Lato', 'Inter', sans-serif;
-    font-size: 1.05rem;
   }
   .text-ivory {
     color: var(--ivory-white);

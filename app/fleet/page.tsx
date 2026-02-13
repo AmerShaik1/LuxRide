@@ -2,8 +2,11 @@
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Shield, Star, Users, Briefcase, Zap } from 'lucide-react';
+import { Star, Users, Briefcase } from 'lucide-react';
 import Link from 'next/link';
+import { SiteHeader } from '@/components/site/SiteHeader';
+import { SiteFooter } from '@/components/site/SiteFooter';
+import Image from 'next/image';
 
 export default function FleetPage() {
   const fleet = [
@@ -78,99 +81,73 @@ export default function FleetPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-emerald-deep text-ivory">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-emerald-deep/80 backdrop-blur-md border-b border-champagne/20">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-champagne" />
-              <span className="text-xl font-light tracking-[0.2em] text-ivory font-heading">APEX</span>
-            </Link>
-            <div className="hidden lg:flex items-center gap-12">
-              <Link href="/services" className="text-sm text-ivory/90 hover:text-champagne transition-colors tracking-wide font-body">SERVICES</Link>
-              <Link href="/fleet" className="text-sm text-champagne transition-colors tracking-wide font-body">FLEET</Link>
-              <Link href="/about" className="text-sm text-ivory/90 hover:text-champagne transition-colors tracking-wide font-body">ABOUT</Link>
-              <Link href="/contact" className="text-sm text-ivory/90 hover:text-champagne transition-colors tracking-wide font-body">CONTACT</Link>
-            </div>
-            <div className="flex items-center gap-4">
-              <Link href="/auth/login">
-                <Button variant="ghost" className="text-ivory hover:bg-champagne/10 font-light tracking-wide font-body">
-                  MEMBER LOGIN
-                </Button>
-              </Link>
-              <Link href="/auth/signup">
-                <Button className="bg-champagne hover:bg-champagne-light text-black font-light tracking-wide px-8 font-body">
-                  RESERVE
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-emerald-900">
+      <SiteHeader />
 
-      <main className="pt-24">
-        <section className="py-32 px-8 bg-emerald-deep">
+      <main className="pt-20">
+        <section className="py-24 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
-              <div className="border-l-2 border-r-2 border-champagne inline-block px-8 py-3 mb-8">
-                <span className="text-champagne text-sm tracking-[0.3em] font-light font-body">EXQUISITE COLLECTION</span>
+              <div className="border-l-2 border-r-2 border-gold-400 inline-block px-8 py-3 mb-8">
+                <span className="text-gold-400 text-sm tracking-[0.3em] font-light font-body">
+                  OUR FLEET
+                </span>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight mb-8 font-heading">
-                Our Fleet
+              <h1 className="text-5xl md:text-6xl font-light tracking-tight mb-6 text-ivory font-heading">
+                Curated Collection
               </h1>
-              <p className="text-xl text-ivory/90 font-light max-w-2xl mx-auto font-body leading-relaxed">
-                Meticulously maintained luxury vehicles from the world's finest manufacturers
+              <p className="text-xl text-ivory/70 font-light max-w-2xl mx-auto font-body">
+                Meticulously maintained vehicles from the world's finest manufacturers
               </p>
             </div>
 
             <div className="space-y-20">
               {fleet.map((category, idx) => (
                 <div key={idx}>
-                  <div className="mb-12 text-center">
-                    <h2 className="text-4xl font-light mb-3 text-champagne font-heading">{category.category}</h2>
-                    <p className="text-ivory/90 font-light mb-6 font-body">{category.description}</p>
-                    <div className="flex items-center justify-center gap-8 text-sm">
+                  <div className="mb-12">
+                    <h2 className="text-3xl font-light mb-3 text-ivory font-heading">{category.category}</h2>
+                    <p className="text-ivory/70 font-light mb-6 font-body text-lg">{category.description}</p>
+                    <div className="flex items-center gap-8 text-sm">
                       <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-champagne" />
-                        <span className="font-light text-ivory/85 font-body">{category.capacity}</span>
+                        <Users className="w-5 h-5 text-gold-400/60" />
+                        <span className="font-light text-ivory/80 font-body">{category.capacity}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Briefcase className="w-4 h-4 text-champagne" />
-                        <span className="font-light text-ivory/85 font-body">{category.luggage}</span>
+                        <Briefcase className="w-5 h-5 text-gold-400/60" />
+                        <span className="font-light text-ivory/80 font-body">{category.luggage}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {category.vehicles.map((vehicle, vidx) => (
-                      <Card key={vidx} className="overflow-hidden bg-emerald-dark/50 border-2 border-champagne/20 hover:border-champagne/60 transition-all hover:bg-emerald-dark duration-300 group">
-                        <div className="relative aspect-[4/3] overflow-hidden">
+                      <Card key={vidx} className="overflow-hidden bg-emerald-800/50 border-gold-400/20 hover:border-gold-400 transition-all hover:shadow-2xl hover:shadow-gold-400/10 group">
+                        <div className="relative aspect-[4/3] overflow-hidden bg-emerald-950">
                           <img
                             src={vehicle.image}
                             alt={vehicle.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           />
-                          <div className="absolute inset-0 bg-emerald-deep/20" />
-                          <div className="absolute top-4 right-4 bg-champagne backdrop-blur-sm px-3 py-1 flex items-center gap-1">
-                            <Star className="w-3 h-3 fill-black text-black" />
-                            <span className="text-xs font-medium">5.0</span>
+                          <div className="absolute top-4 right-4 bg-gold-400/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-1.5">
+                            <Star className="w-3.5 h-3.5 fill-emerald-900 text-emerald-900" />
+                            <span className="text-xs font-medium text-emerald-900">5.0</span>
                           </div>
                         </div>
-                        <div className="p-8">
+                        <div className="p-6">
                           <div className="flex items-start justify-between mb-6">
-                            <h3 className="text-2xl font-light text-champagne font-heading">{vehicle.name}</h3>
-                            <span className="text-sm font-light text-champagne font-body">{vehicle.price}</span>
+                            <h3 className="text-xl font-light text-ivory font-heading">{vehicle.name}</h3>
+                            <span className="text-sm font-medium text-gold-400 font-body">{vehicle.price}</span>
                           </div>
                           <div className="space-y-3 mb-8">
                             {vehicle.features.map((feature, fidx) => (
                               <div key={fidx} className="flex items-center gap-3">
-                                <div className="w-1 h-1 rounded-full bg-champagne" />
-                                <span className="text-sm font-light text-ivory/90 font-body">{feature}</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                                <span className="text-sm font-light text-ivory/80 font-body">{feature}</span>
                               </div>
                             ))}
                           </div>
                           <Link href="/auth/signup">
-                            <Button className="w-full bg-champagne hover:bg-champagne-light text-black font-light tracking-wide font-body">
+                            <Button className="w-full bg-gold-400 hover:bg-gold-300 text-emerald-900 font-light tracking-wide font-body">
                               SELECT VEHICLE
                             </Button>
                           </Link>
@@ -184,16 +161,16 @@ export default function FleetPage() {
           </div>
         </section>
 
-        <section className="py-32 px-8 bg-emerald-medium border-t border-champagne/20">
+        <section className="py-24 px-6 bg-emerald-800 border-t border-gold-400/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl font-light mb-8 font-heading">Experience Our Fleet</h2>
-            <p className="text-xl text-ivory/90 font-light mb-12 font-body leading-relaxed">
-              Every vehicle in our fleet represents the pinnacle of automotive excellence
+            <h2 className="text-4xl md:text-5xl font-light mb-6 text-ivory font-heading">Experience Excellence</h2>
+            <p className="text-lg text-ivory/70 font-light mb-12 font-body leading-relaxed">
+              Every vehicle in our fleet represents the pinnacle of automotive engineering
             </p>
             <Link href="/auth/signup">
               <Button
                 size="lg"
-                className="bg-champagne hover:bg-champagne-light text-black font-light tracking-[0.2em] px-12 h-14 text-sm font-body shadow-lg shadow-champagne/20"
+                className="bg-gold-400 hover:bg-gold-300 text-emerald-900 font-light tracking-wide px-12 h-14 font-body shadow-lg shadow-gold-400/20"
               >
                 RESERVE NOW
               </Button>
@@ -202,30 +179,7 @@ export default function FleetPage() {
         </section>
       </main>
 
-      <footer className="border-t border-champagne/20 py-16 px-8 bg-emerald-deep">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <Shield className="w-6 h-6 text-champagne" />
-              <span className="text-xl font-light tracking-[0.2em] text-ivory font-heading">APEX</span>
-            </div>
-            <p className="text-sm text-ivory/50 font-light tracking-wide font-body">
-              Extraordinary journeys for extraordinary lives
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8 mb-12 text-sm text-ivory/85">
-            <Link href="/services" className="hover:text-champagne transition-colors tracking-wide font-body">Services</Link>
-            <Link href="/fleet" className="hover:text-champagne transition-colors tracking-wide font-body">Fleet</Link>
-            <Link href="/about" className="hover:text-champagne transition-colors tracking-wide font-body">About</Link>
-            <Link href="/contact" className="hover:text-champagne transition-colors tracking-wide font-body">Contact</Link>
-          </div>
-
-          <div className="text-center pt-8 border-t border-champagne/20">
-            <p className="text-xs text-ivory/40 tracking-wider font-body">&copy; 2024 APEX. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
