@@ -165,45 +165,48 @@ export default function Home() {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-subtle-zoom"
             style={{
               backgroundImage:
-                "url('https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=2200')",
+                "url('https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg?auto=compress&cs=tinysrgb&w=2200')",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-[#0F2E2B]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-[#0F2E2B]/92" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(230,201,146,0.18),transparent_38%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.58),rgba(0,0,0,0.12)_34%,rgba(0,0,0,0.42))]" />
 
           <div className="relative mx-auto flex min-h-[96vh] max-w-7xl flex-col justify-center px-6 pb-16 pt-28 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
               <div>
-                <p className="mb-8 font-body text-[11px] uppercase tracking-[0.24em] text-[#F8F6F0]/75">
-                  Established 2024 - Global Concierge
-                </p>
+                <div className="max-w-2xl border border-[#E6C992]/30 bg-black/46 p-7 shadow-[0_16px_44px_rgba(0,0,0,0.45)] backdrop-blur-[1.5px] md:p-8">
+                  <p className="mb-8 font-body text-[11px] uppercase tracking-[0.24em] text-[#F8F6F0]/85">
+                    Established 2024 - Global Concierge
+                  </p>
 
-                <h1 className="font-heading text-6xl font-light leading-[0.9] tracking-tight md:text-7xl xl:text-8xl">
-                  DISCREET
-                  <br />
-                  <span className="italic text-[#E6C992]">Black Car</span>
-                  <br />
-                  Mobility
-                </h1>
+                  <h1 className="font-heading text-6xl font-light leading-[0.9] tracking-tight text-[#F8F6F0] drop-shadow-[0_2px_18px_rgba(0,0,0,0.72)] md:text-7xl xl:text-8xl">
+                    DISCREET
+                    <br />
+                    <span className="italic text-[#E6C992]">Black Car</span>
+                    <br />
+                    Mobility
+                  </h1>
 
-                <p className="mt-8 max-w-xl font-body text-lg leading-relaxed text-[#F8F6F0]/80">
-                  A 2026 luxury transport standard inspired by Rolls-Royce restraint: silent cabins, exact timing,
-                  and flawless door-to-door execution.
-                </p>
+                  <p className="mt-8 max-w-xl font-body text-lg leading-relaxed text-[#F8F6F0]/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+                    A 2026 luxury transport standard inspired by Rolls-Royce restraint: silent cabins, exact timing,
+                    and flawless door-to-door execution.
+                  </p>
 
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <Link href="/auth/signup?type=rider">
-                    <Button className="h-12 rounded-full bg-[#E6C992] px-8 font-body text-xs tracking-[0.16em] text-black hover:bg-[#F2DDB8]">
-                      ARRANGE TRANSPORT
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link
-                    href="/fleet"
-                    className="border-b border-[#F8F6F0]/40 pb-1 font-body text-xs tracking-[0.16em] text-[#F8F6F0]/90 transition-colors hover:border-[#E6C992] hover:text-[#E6C992]"
-                  >
-                    VIEW CURATED FLEET
-                  </Link>
+                  <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <Link href="/auth/signup?type=rider">
+                      <Button className="h-12 rounded-full bg-[#E6C992] px-8 font-body text-xs tracking-[0.16em] text-black hover:bg-[#F2DDB8]">
+                        ARRANGE TRANSPORT
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                    <Link
+                      href="/fleet"
+                      className="border-b border-[#F8F6F0]/55 pb-1 font-body text-xs tracking-[0.16em] text-[#F8F6F0] transition-colors hover:border-[#E6C992] hover:text-[#E6C992]"
+                    >
+                      VIEW CURATED FLEET
+                    </Link>
+                  </div>
                 </div>
               </div>
 
