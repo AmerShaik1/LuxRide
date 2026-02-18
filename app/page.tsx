@@ -3,7 +3,20 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, ChevronRight, Clock3, Globe, Mail, Phone, Shield, UserRound } from 'lucide-react';
+import {
+  ArrowRight,
+  BadgeCheck,
+  Building2,
+  ChevronRight,
+  Clock3,
+  Globe,
+  Lock,
+  Mail,
+  Phone,
+  Plane,
+  Shield,
+  UserRound,
+} from 'lucide-react';
 
 import { useAuth } from '@/lib/auth/context';
 import { Button } from '@/components/ui/button';
@@ -19,14 +32,35 @@ const navLinks = [
 
 const heroFrames = [
   {
-    title: 'Chauffeur assurance',
+    title: 'Principal-ready arrivals',
     image:
       'https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg?auto=compress&cs=tinysrgb&w=1400',
   },
   {
-    title: 'Black luxury fleet',
+    title: 'White-glove interiors',
     image:
-      'https://images.pexels.com/photos/1719647/pexels-photo-1719647.jpeg?auto=compress&cs=tinysrgb&w=1400',
+      'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  },
+];
+
+const conciergePillars = [
+  {
+    icon: Lock,
+    title: 'Confidentiality first',
+    description:
+      'NDA-grade handling, encrypted movement notes, and discreet pickup protocols for principals and families.',
+  },
+  {
+    icon: Plane,
+    title: 'Aviation synchronized',
+    description:
+      'Flight tracking, FBO coordination, and rapid curbside transitions built for private and commercial arrivals.',
+  },
+  {
+    icon: BadgeCheck,
+    title: 'Security-vetted chauffeurs',
+    description:
+      'Professionally screened, hospitality-trained drivers with high-stakes event and executive movement experience.',
   },
 ];
 
@@ -39,9 +73,15 @@ const valueProps = [
   },
   {
     icon: Globe,
-    title: 'Global Hubs',
+    title: 'Top U.S. City Coverage',
     description:
-      'Seamless coordination in 40+ cities with synchronized airport and event movements.',
+      'Consistent concierge-level service in New York, Los Angeles, Miami, Chicago, San Francisco, Dallas, Houston, Washington DC, Boston, and Las Vegas.',
+  },
+  {
+    icon: Clock3,
+    title: 'Zero Latency',
+    description:
+      'Live dispatch with proactive routing and schedule monitoring so your vehicle arrives before your timeline requires.',
   },
 ];
 
@@ -55,6 +95,46 @@ const clientExperience = [
     icon: Clock3,
     title: 'Zero Latency',
     description: 'Synchronized with manifests and calendar windows for precision arrivals without drift.',
+  },
+];
+
+const cityCoverage = [
+  'New York',
+  'Los Angeles',
+  'Miami',
+  'Chicago',
+  'San Francisco',
+  'Dallas',
+  'Houston',
+  'Washington DC',
+  'Boston',
+  'Las Vegas',
+];
+
+const premiumFleet = [
+  {
+    name: 'Rolls-Royce Ghost Series II',
+    type: 'Flagship Black Car',
+    image:
+      'https://images.pexels.com/photos/1719647/pexels-photo-1719647.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  },
+  {
+    name: 'Mercedes-Maybach S-Class',
+    type: 'Executive Luxury Sedan',
+    image:
+      'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  },
+  {
+    name: 'Cadillac Escalade ESV',
+    type: 'Security SUV',
+    image:
+      'https://images.pexels.com/photos/2365572/pexels-photo-2365572.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  },
+  {
+    name: 'BMW 7 Series',
+    type: 'Executive Performance Sedan',
+    image:
+      'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1400',
   },
 ];
 
@@ -124,111 +204,206 @@ export default function Home() {
       </nav>
 
       <main className="relative z-10 pb-20 pt-28">
+        {/* HERO SECTION */}
         <section className="px-5 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-7xl border border-[#E6C992]/20 bg-[linear-gradient(125deg,rgba(7,31,28,0.98)_0%,rgba(11,38,34,0.96)_45%,rgba(19,53,47,0.95)_100%)] shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
-            <div className="relative overflow-hidden p-6 sm:p-8 lg:p-10">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(230,201,146,0.12),transparent_35%),radial-gradient(circle_at_72%_66%,rgba(230,201,146,0.08),transparent_44%)]" />
+          <div className="relative mx-auto max-w-7xl overflow-hidden border border-[#E6C992]/20 shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+            <div
+              className="absolute inset-0 animate-subtle-zoom bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage:
+                  "url('https://images.pexels.com/photos/1719647/pexels-photo-1719647.jpeg?auto=compress&cs=tinysrgb&w=2200')",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#071F1C]/95 via-[#071F1C]/72 to-[#071F1C]/88" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(230,201,146,0.16),transparent_40%)]" />
 
-              <div className="relative grid gap-8 xl:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-                <div>
-                  <p className="font-body text-[11px] uppercase tracking-[0.22em] text-[#F8F6F0]/78">
-                    ESTABLISHED 2024 - GLOBAL CONCIERGE
-                  </p>
+            <div className="relative grid min-h-[86vh] gap-10 p-7 sm:p-10 lg:grid-cols-[1.08fr_0.92fr] lg:p-12">
+              <div className="self-center">
+                <p className="font-body text-[11px] uppercase tracking-[0.24em] text-[#F8F6F0]/82 animate-fade-in-up">
+                  ESTABLISHED 2024 - PREMIUM U.S. GROUND CONCIERGE
+                </p>
 
-                  <h1 className="mt-5 font-heading text-6xl font-light leading-[0.9] tracking-tight text-[#F8F6F0] md:text-7xl xl:text-[5.3rem]">
-                    DISCREET
-                    <span className="mt-1 block italic text-[#E6C992]">Luxury</span>
-                  </h1>
-                </div>
+                <h1 className="mt-5 font-heading text-6xl font-light leading-[0.88] tracking-tight text-[#F8F6F0] md:text-7xl xl:text-[5.5rem]">
+                  DISCREET
+                  <span className="mt-1 block italic text-[#E6C992]">Black Car</span>
+                  Mobility
+                </h1>
 
-                <div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {heroFrames.map((frame) => (
-                      <div key={frame.title} className="relative h-48 overflow-hidden border border-[#E6C992]/25 sm:h-56 lg:h-60">
-                        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${frame.image}')` }} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex items-center justify-center gap-2.5">
-                    {[0, 1, 2, 3, 4].map((dot) => (
-                      <span key={dot} className={`h-2 w-2 rounded-full ${dot === 0 ? 'bg-[#E6C992]' : 'bg-[#F8F6F0]/35'}`} />
-                    ))}
-                  </div>
-                </div>
-              </div>
+                <p className="mt-7 max-w-xl font-body text-lg leading-relaxed text-[#F8F6F0]/86">
+                  Built for high net worth individuals who value privacy, punctuality, and control. Concierge-caliber
+                  chauffeured transportation across America&apos;s most important cities.
+                </p>
 
-              <div className="relative my-9 h-px bg-gradient-to-r from-transparent via-[#E6C992]/40 to-transparent" />
-
-              <div className="relative grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
-                <div>
-                  <p className="max-w-md font-body text-[1.24rem] leading-[1.18] text-[#F8F6F0]/86">
-                    The gold standard in private transportation for the world&apos;s most accomplished individuals.
-                  </p>
-
-                  <div className="mt-10 flex items-center gap-4">
-                    <Link href="/auth/signup?type=rider">
-                      <Button className="h-11 rounded-full bg-[#E6C992] px-6 font-body text-xs tracking-[0.15em] text-black hover:bg-[#F2DDB8]">
-                        RESERVE SIGNUP
-                        <ChevronRight className="ml-1 h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <div className="flex items-center gap-2.5">
-                      {[0, 1, 2].map((dot) => (
-                        <span key={dot} className="h-2.5 w-2.5 rounded-full bg-[#E6C992]/80" />
-                      ))}
-                      <ChevronRight className="h-4 w-4 text-[#E6C992]" />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h2 className="font-body text-[2.2rem] font-semibold tracking-tight text-[#F8F6F0]">VALUE PROPS</h2>
-                  <div className="mt-7 grid gap-6 sm:grid-cols-2">
-                    {valueProps.map((prop) => (
-                      <article key={prop.title} className="border border-[#E6C992]/22 bg-black/20 p-5">
-                        <prop.icon className="h-7 w-7 text-[#E6C992]" />
-                        <h3 className="mt-3 font-body text-[1.9rem] font-medium leading-none text-[#F8F6F0]">{prop.title}</h3>
-                        <p className="mt-4 max-w-sm font-body text-[1rem] leading-relaxed text-[#F8F6F0]/76">{prop.description}</p>
-                      </article>
-                    ))}
-                  </div>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link href="/auth/signup?type=rider">
+                    <Button className="h-12 rounded-full bg-[#E6C992] px-8 font-body text-xs tracking-[0.16em] text-black hover:bg-[#F2DDB8]">
+                      ARRANGE TRANSPORT
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link
+                    href="/services"
+                    className="border-b border-[#F8F6F0]/45 pb-1 font-body text-xs tracking-[0.16em] text-[#F8F6F0]/90 transition-colors hover:border-[#E6C992] hover:text-[#E6C992]"
+                  >
+                    EXPLORE SERVICES
+                  </Link>
                 </div>
               </div>
 
-              <div className="relative my-9 h-px bg-gradient-to-r from-transparent via-[#E6C992]/40 to-transparent" />
-
-              <div className="relative grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
-                <div>
-                  <h2 className="font-body text-[2.2rem] font-semibold tracking-tight text-[#F8F6F0]">CLIENT EXPERIENCE</h2>
-
-                  <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                    {clientExperience.map((item) => (
-                      <article key={item.title} className="border border-[#E6C992]/22 bg-black/18 p-5">
-                        <item.icon className="h-7 w-7 text-[#E6C992]" />
-                        <h3 className="mt-3 font-body text-[1.85rem] font-medium leading-none text-[#F8F6F0]">{item.title}</h3>
-                        <p className="mt-4 font-body text-[1rem] leading-relaxed text-[#F8F6F0]/76">{item.description}</p>
-                      </article>
-                    ))}
-                  </div>
+              <aside className="self-end border border-[#E6C992]/30 bg-black/38 p-6 backdrop-blur-sm">
+                <p className="font-body text-[11px] uppercase tracking-[0.2em] text-[#E6C992]/95">
+                  Top 10 U.S. Cities
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
+                  {cityCoverage.map((city) => (
+                    <p key={city} className="font-body text-sm text-[#F8F6F0]/80">
+                      {city}
+                    </p>
+                  ))}
                 </div>
+                <div className="mt-6 border-t border-[#E6C992]/20 pt-5">
+                  <p className="font-body text-xs uppercase tracking-[0.16em] text-[#E6C992]/90">
+                    24/7 Dispatch | Flight Tracking | Event Security Routing
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
 
-                <div className="relative h-[360px] overflow-hidden border border-[#E6C992]/25 sm:h-[420px]">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{
-                      backgroundImage:
-                        "url('https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1800')",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/12" />
+        {/* TRUST PILLARS */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl grid gap-5 md:grid-cols-3">
+            {conciergePillars.map((pillar) => (
+              <article key={pillar.title} className="border border-[#E6C992]/22 bg-[#0B2723]/62 p-6">
+                <pillar.icon className="h-7 w-7 text-[#E6C992]" />
+                <h2 className="mt-4 font-body text-2xl font-medium text-[#F8F6F0]">{pillar.title}</h2>
+                <p className="mt-3 font-body text-sm leading-relaxed text-[#F8F6F0]/75">{pillar.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* VALUE PROPOSITION GRID */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl border border-[#E6C992]/20 bg-[#0B2723]/75 p-8 sm:p-10">
+            <div className="mb-10 flex items-end justify-between gap-4">
+              <div>
+                <p className="font-body text-[11px] uppercase tracking-[0.2em] text-[#E6C992]/90">Value proposition</p>
+                <h2 className="mt-2 font-heading text-5xl font-light leading-none">Why principals choose us</h2>
+              </div>
+              <Building2 className="hidden h-8 w-8 text-[#E6C992] sm:block" />
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {valueProps.map((prop) => (
+                <article key={prop.title} className="border border-[#E6C992]/22 bg-black/22 p-6">
+                  <prop.icon className="h-7 w-7 text-[#E6C992]" />
+                  <h3 className="mt-4 font-body text-[1.7rem] font-medium leading-none text-[#F8F6F0]">{prop.title}</h3>
+                  <p className="mt-4 font-body text-sm leading-relaxed text-[#F8F6F0]/74">{prop.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PREMIUM FLEET */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl border border-[#E6C992]/20 bg-[linear-gradient(125deg,rgba(7,31,28,0.96)_0%,rgba(11,38,34,0.95)_45%,rgba(19,53,47,0.92)_100%)] p-8 sm:p-10">
+            <div className="mb-10 flex items-end justify-between gap-4">
+              <div>
+                <p className="font-body text-[11px] uppercase tracking-[0.2em] text-[#E6C992]/90">Curated fleet</p>
+                <h2 className="mt-2 font-heading text-5xl font-light leading-none">Premium black car standards</h2>
+              </div>
+              <Link href="/fleet" className="hidden sm:inline-flex">
+                <Button variant="outline" className="border-[#E6C992]/70 bg-transparent text-[#E6C992] hover:bg-[#E6C992] hover:text-black">
+                  VIEW FULL FLEET
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {premiumFleet.map((vehicle) => (
+                <article key={vehicle.name} className="overflow-hidden border border-[#E6C992]/22 bg-black/20">
+                  <div className="relative h-44 overflow-hidden">
+                    <div className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 hover:scale-105" style={{ backgroundImage: `url('${vehicle.image}')` }} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15" />
+                  </div>
+                  <div className="p-5">
+                    <p className="font-body text-[11px] uppercase tracking-[0.16em] text-[#E6C992]/90">{vehicle.type}</p>
+                    <h3 className="mt-2 font-body text-xl font-medium text-[#F8F6F0]">{vehicle.name}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CLIENT EXPERIENCE */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl border border-[#E6C992]/20 bg-[#0B2723]/75 p-8 sm:p-10">
+            <div className="mb-8">
+              <p className="font-body text-[11px] uppercase tracking-[0.2em] text-[#E6C992]/90">Client experience</p>
+              <h2 className="mt-2 font-heading text-5xl font-light leading-none">Calm operations, exact execution</h2>
+            </div>
+
+            <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+              <div className="grid gap-6 sm:grid-cols-2">
+                {clientExperience.map((item) => (
+                  <article key={item.title} className="border border-[#E6C992]/22 bg-black/20 p-5">
+                    <item.icon className="h-7 w-7 text-[#E6C992]" />
+                    <h3 className="mt-3 font-body text-[1.85rem] font-medium leading-none text-[#F8F6F0]">{item.title}</h3>
+                    <p className="mt-4 font-body text-[1rem] leading-relaxed text-[#F8F6F0]/76">{item.description}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {heroFrames.map((frame) => (
+                  <div key={frame.title} className="relative h-56 overflow-hidden border border-[#E6C992]/25">
+                    <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${frame.image}')` }} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DUAL PATH SECTION */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col md:flex-row gap-4 min-h-[560px]">
+              <div className="flex-1 relative overflow-hidden group p-10 lg:p-12 flex flex-col justify-end border border-[#E6C992]/20">
+                <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg')] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062019] via-[#062019]/40 to-transparent" />
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-light mb-4 italic font-serif">The Client Experience</h3>
+                  <p className="text-[#F8F6F0]/75 mb-8 max-w-sm font-light">Access our private fleet and dedicated U.S. concierge command team.</p>
+                  <Link href="/auth/signup?type=rider">
+                    <Button className="bg-[#F8F6F0] text-[#062019] hover:bg-[#E6C992] rounded-none px-8">RESERVE NOW</Button>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex-1 relative overflow-hidden group p-10 lg:p-12 flex flex-col justify-end border border-[#E6C992]/20">
+                <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/5253123/pexels-photo-5253123.jpeg')] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062019] via-[#062019]/40 to-transparent" />
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-light mb-4 italic font-serif">The Chauffeur Network</h3>
+                  <p className="text-[#F8F6F0]/75 mb-8 max-w-sm font-light">Join an elite circle of professional drivers serving UHNW clients.</p>
+                  <Link href="/auth/signup?type=driver">
+                    <Button variant="outline" className="border-[#F8F6F0] text-[#F8F6F0] hover:bg-[#F8F6F0] hover:text-[#062019] rounded-none px-8">APPLY TO DRIVE</Button>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mt-14 px-5 sm:px-6 lg:px-10">
+        {/* MEMBERSHIP CTA */}
+        <section className="mt-12 px-5 sm:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl border border-[#E6C992]/20 bg-[#0B2723]/75 p-8 sm:p-10">
             <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div>
@@ -237,7 +412,7 @@ export default function Home() {
                   Begin your private mobility profile.
                 </h3>
                 <p className="mt-5 max-w-2xl font-body text-lg leading-relaxed text-[#F8F6F0]/80">
-                  Share your preferred cities, fleet style, and travel cadence. Our concierge team builds a transport
+                  Share your preferred cities, fleet profile, and travel cadence. Our concierge team builds a transport
                   plan around your schedule and standards.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -317,6 +492,33 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <style jsx global>{`
+        @keyframes subtle-zoom {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.08);
+          }
+        }
+        .animate-subtle-zoom {
+          animation: subtle-zoom 18s ease-in-out infinite alternate;
+        }
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 1s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
